@@ -8,7 +8,8 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
-
+const SMSLink = props => <Link to="/sms" {...props} />
+const HOMELink = props => <Link to="/" {...props} />
 const styles = {
   root: {
     flexGrow: 1,
@@ -34,9 +35,14 @@ function ButtonAppBar(props) {
           <Typography variant="h6" color="inherit" className={classes.grow}>
             Front End
           </Typography>
-          <Link to="/sms">    
-          <Button>Login</Button>
-          </Link>
+          <Button component={HOMELink}>
+          Home
+          </Button>
+          <Button component={SMSLink}>
+          Twilio
+          </Button>
+
+         
         </Toolbar>
       </AppBar>
       
