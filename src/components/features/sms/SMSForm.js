@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './SMSForm.css';
 
 class SMSForm extends Component {
-    constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       message: {
@@ -12,14 +12,8 @@ class SMSForm extends Component {
       submitting: false,
       error: false
     };
-     this.onHandleChange = this.onHandleChange.bind(this);
-      this.onSubmit = this.onSubmit.bind(this);
-  }
-    onHandleChange(event) {
-    const name = event.target.getAttribute('name');
-    this.setState({
-      message: { ...this.state.message, [name]: event.target.value }
-    });
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onHandleChange = this.onHandleChange.bind(this);
   }
 
   onSubmit(event) {
@@ -32,7 +26,7 @@ class SMSForm extends Component {
       },
       body: JSON.stringify(this.state.message)
     })
-      .then(res => res.json())
+      .then(res => res.text())
       .then(data => {
         if (data.success) {
           this.setState({
@@ -51,13 +45,30 @@ class SMSForm extends Component {
         }
       });
   }
- render() {
+
+  onHandleChange(event) {
+    const name = event.target.getAttribute('name');
+    this.setState({
+      message: { ...this.state.message, [name]: event.target.value }
+    });
+  }
+
+  render() {
     return (
-       <form
+      <form
         onSubmit={this.onSubmit}
         className={this.state.error ? 'error sms-form' : 'sms-form'}
       >
         <div>
+        <p> Todo:<br/></p>
+
+
+        <ol>
+        <li> Add phone numbers to a list and display them  </li>
+        <li> Be able to select which phone number <br/> you want to send a message to, or all of them. </li>
+        <li> Create history of messages and numbers we texted</li>
+        </ol>
+        
           <label htmlFor="to">To:</label>
           <input
             type="tel"
@@ -79,7 +90,7 @@ class SMSForm extends Component {
         <button type="submit" disabled={this.state.submitting}>
           Send message
         </button>
-       </form>
+      </form>
     );
   }
 }

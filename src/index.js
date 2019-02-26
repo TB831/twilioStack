@@ -5,9 +5,15 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 
+let contacts = {
+  name:'Scott',
+  phone: '555 555 5555'
+}
+
+
 ReactDOM.render(
   <BrowserRouter>
-<App />
+<App contacts={contacts} />
   </BrowserRouter>
   , document.getElementById('root'));
 

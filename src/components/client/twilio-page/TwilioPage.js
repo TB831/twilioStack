@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import ButtonAppBar from '../../features/button-app-bar/ButtonAppBar.js';
+import PrimarySearchAppBar from '../../features/primary-search-app-bar/PrimarySearchAppBar.js';
 import SMSForm from '../../features/sms/SMSForm.js';
+
 class TwilioPage extends Component {
   render() {
     return (
-      <div className="App">
-        <ButtonAppBar/>
+      <div>
+        <PrimarySearchAppBar/>
          <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-
           <SMSForm />
         </header>
       </div>

@@ -7,9 +7,18 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import { Link } from 'react-router-dom';
-const SMSLink = props => <Link to="/sms" {...props} />
-const HOMELink = props => <Link to="/" {...props} />
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import purple from '@material-ui/core/colors/purple';
+import {Link} from 'react-router-dom';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: { main: '#fff' }, // Purple and green play nicely together.
+    secondary: { main: '#11cb5f' }, // This is just green.A700 as hex.
+  },
+  typography: { useNextVariants: true },
+});
+
 const styles = {
   root: {
     flexGrow: 1,
@@ -21,31 +30,30 @@ const styles = {
     marginLeft: -12,
     marginRight: 20,
   },
+  linkButton:{
+    textDecoration: 'none',
+  }
 };
 
 function ButtonAppBar(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
+    <MuiThemeProvider theme={theme}>
       <AppBar position="static">
         <Toolbar>
           <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" className={classes.grow}>
-            Front End
+          <Link className={classes.linkButton} to="/">
+            PromoHouse
+          </Link>
           </Typography>
-          <Button component={HOMELink}>
-          Home
-          </Button>
-          <Button component={SMSLink}>
-          Twilio
-          </Button>
-
-         
+          <Link className={classes.linkButton} to="/login">Login </Link>
         </Toolbar>
       </AppBar>
-      
+      </MuiThemeProvider>
     </div>
   );
 }
